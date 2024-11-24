@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cortex Debug (OpenOCD)",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/firmware.elf", // Path to your ELF file
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "device": "STM32F103C6T6",
+            "configFiles": [
+                "interface/stlink.cfg", // ST-Link interface config
+                "target/stm32f1x.cfg" // STM32F1-specific target config
+            ],
+            "svdFile": "${workspaceFolder}/STM32F103C6.svd", // Optional: for better peripheral view
+            "runToMain": true,
+            "preLaunchTask": "build", // Task to run before launching the debugger
+            "postLaunchCommands": [
+                "monitor reset halt", // Reset and halt the target MCU before debugging
+                "monitor flash write_image erase firmware.elf", // Flash the ELF file to the MCU
+                "monitor reset halt"
+            ]
+        }
+    ]
+}

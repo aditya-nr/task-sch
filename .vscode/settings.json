@@ -1,0 +1,7 @@
+{
+    "cortex-debug.variableUseNaturalFormat": false,
+    "files.associations": {
+        "14_task.h": "c",
+        "stdint.h": "c"
+    }
+}
